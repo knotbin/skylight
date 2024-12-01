@@ -6,12 +6,23 @@
 //
 
 import SwiftUI
+import ATProtoKit
 
 @main
 struct SkylightApp: App {
+    @State var atProto = ATProtoKit()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if atProto.session == nil {
+                LoginView(atProto: $atProto)
+            } else {
+                TabView {
+                    ContentView(atProto: $atProto)
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                }
+            }
         }
     }
 }

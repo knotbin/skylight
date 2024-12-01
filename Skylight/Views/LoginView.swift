@@ -6,13 +6,35 @@
 //
 
 import SwiftUI
+import ATProtoKit
 
 struct LoginView: View {
+    @State private var viewModel = LoginViewModel()
+    let handle: String
+    @Binding var atProto: ATProtoKit
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Handle", text: $viewModel.username)
+                        .autocorrectionDisabled()
+                        .autocapitalization(.none)
+                    SecureField("App Password", text: $viewModel.password)
+                }
+            }
+            .padding(.top, 40)
+            Button("Login") {
+                Task {
+                    let session = try await viewModel.createSession()
+                    atProto = ATProtoKit(session: session)
+                }
+            }
+        }
+        .padding()
+
     }
 }
 
 #Preview {
-    LoginView()
+    LoginView(handle: "knotbin.xyz", atProto: .constant(ATProtoKit()))
 }

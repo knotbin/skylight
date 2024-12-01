@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5996D03F2CFCDCB0009B39BF /* ATMacro in Frameworks */ = {isa = PBXBuildFile; productRef = 5996D03E2CFCDCB0009B39BF /* ATMacro */; };
+		5996D0412CFCDCB0009B39BF /* ATProtoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5996D0402CFCDCB0009B39BF /* ATProtoKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		59F45AE92CFCC75100A3DC1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5996D03F2CFCDCB0009B39BF /* ATMacro in Frameworks */,
+				5996D0412CFCDCB0009B39BF /* ATProtoKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = Skylight;
 			packageProductDependencies = (
+				5996D03E2CFCDCB0009B39BF /* ATMacro */,
+				5996D0402CFCDCB0009B39BF /* ATProtoKit */,
 			);
 			productName = Skylight;
 			productReference = 59F45AD72CFCC75000A3DC1F /* Skylight.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = 59F45ACE2CFCC75000A3DC1F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5996D03D2CFCDCB0009B39BF /* XCRemoteSwiftPackageReference "ATProtoKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 59F45AD82CFCC75000A3DC1F /* Products */;
 			projectDirPath = "";
@@ -391,7 +403,7 @@
 				CODE_SIGN_ENTITLEMENTS = Skylight/Skylight.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Skylight/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = V2WCUWDL7B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -430,7 +442,7 @@
 				CODE_SIGN_ENTITLEMENTS = Skylight/Skylight.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Skylight/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = V2WCUWDL7B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -591,6 +603,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5996D03D2CFCDCB0009B39BF /* XCRemoteSwiftPackageReference "ATProtoKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MasterJ93/ATProtoKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.20.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5996D03E2CFCDCB0009B39BF /* ATMacro */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5996D03D2CFCDCB0009B39BF /* XCRemoteSwiftPackageReference "ATProtoKit" */;
+			productName = ATMacro;
+		};
+		5996D0402CFCDCB0009B39BF /* ATProtoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5996D03D2CFCDCB0009B39BF /* XCRemoteSwiftPackageReference "ATProtoKit" */;
+			productName = ATProtoKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 59F45ACF2CFCC75000A3DC1F /* Project object */;
 }
