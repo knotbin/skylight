@@ -10,7 +10,6 @@ import ATProtoKit
 
 struct LoginView: View {
     @State private var viewModel = LoginViewModel()
-    let handle: String
     @Binding var atProto: ATProtoKit
     var body: some View {
         NavigationStack {
@@ -36,5 +35,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(handle: "knotbin.xyz", atProto: .constant(ATProtoKit()))
+    LoginView(atProto: .constant(ATProtoKit()))
 }
