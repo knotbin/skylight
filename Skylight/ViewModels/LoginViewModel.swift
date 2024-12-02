@@ -7,9 +7,12 @@
 
 import Foundation
 import ATProtoKit
+import SwiftUI
 
 @Observable
 class LoginViewModel {
+    @ObservationIgnored @AppStorage("handle") var handle: String = ""
+    @ObservationIgnored @AppStorage("apppassword") var apppassword: String = ""
     var username: String = ""
     var password: String = ""
     
@@ -18,7 +21,8 @@ class LoginViewModel {
         
         do {
             let session = try await config.authenticate()
-            print(session.handle)
+            handle = username
+            apppassword = password
             return session
         } catch {
             print("Error creating session: \(error)")

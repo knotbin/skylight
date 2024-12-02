@@ -9,17 +9,16 @@ import SwiftUI
 import ATProtoKit
 
 struct ContentView: View {
-    @Binding var atProto: ATProtoKit
-    
+    @Environment(AppModel.self) private var appModel
     var body: some View {
         VStack {
-            if let handle = atProto.session?.handle {
+            if let handle = appModel.atProto.session?.handle {
                 Text("Hello, \(handle)!")
             } else {
                 Text("Hello!")
             }
             Button("Logout") {
-                atProto = ATProtoKit(session: nil)
+                appModel.atProto = ATProtoKit(session: nil)
             }
         }
         .padding()
@@ -28,10 +27,12 @@ struct ContentView: View {
 
 #if os(visionOS)
 #Preview(windowStyle: .automatic) {
-    ContentView(atProto: .constant(ATProtoKit()))
+    ContentView()
+        .environment(AppModel())
 }
 #else
 #Preview {
-    ContentView(atProto: .constant(ATProtoKit()))
+    ContentView()
+        .environment(AppModel())
 }
 #endif

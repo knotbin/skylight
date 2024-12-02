@@ -9,8 +9,8 @@ import SwiftUI
 import ATProtoKit
 
 struct LoginView: View {
+    @Environment(AppModel.self) private var appModel
     @State private var viewModel = LoginViewModel()
-    @Binding var atProto: ATProtoKit
     var body: some View {
         NavigationStack {
             Form {
@@ -25,7 +25,7 @@ struct LoginView: View {
             Button("Login") {
                 Task {
                     let session = try await viewModel.createSession()
-                    atProto = ATProtoKit(session: session)
+                    appModel.atProto = ATProtoKit(session: session)
                 }
             }
         }
@@ -35,5 +35,6 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(atProto: .constant(ATProtoKit()))
+    LoginView()
+        .environment(AppModel())
 }

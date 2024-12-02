@@ -10,19 +10,26 @@ import ATProtoKit
 
 @main
 struct SkylightApp: App {
-    @State var atProto = ATProtoKit()
+    @State var appModel = AppModel()
     var body: some Scene {
         WindowGroup {
-            if atProto.session == nil {
-                LoginView(atProto: $atProto)
+            if appModel.atProto.session == nil {
+                LoginView()
             } else {
                 TabView {
-                    ContentView(atProto: $atProto)
+                    ContentView()
                     .tabItem {
                         Label("Home", systemImage: "house")
+                    }
+                    if let handle = appModel.atProto.session?.handle {
+                        ProfileView(handle: handle)
+                            .tabItem {
+                                Label("Profile", systemImage: "person.crop.circle")
+                            }
                     }
                 }
             }
         }
+        .environment(appModel)
     }
 }

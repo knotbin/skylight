@@ -6,11 +6,25 @@
 //
 
 import SwiftUI
+import ATProtoKit
 
 struct ProfileView: View {
+    @Environment(AppModel.self) private var appModel
     let handle: String
+    @State var profile: AppBskyLexicon.Actor.ProfileViewDetailedDefinition?
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text(profile?.actorHandle ?? "None")
+                AsyncImage(url: profile?.avatarImageURL)
+            }
+        }
+        .task {
+            do {
+                profile = try await appModel.atProto.getProfile(handle)
+            } catch {}
+        }
+        
     }
 }
 
