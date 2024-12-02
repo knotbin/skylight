@@ -16,7 +16,13 @@ struct ProfileView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 Text(profile?.actorHandle ?? "None")
-                AsyncImage(url: profile?.avatarImageURL)
+                AsyncImage(url: profile?.avatarImageURL) { result in
+                    result.image?
+                        .resizable()
+                        .scaledToFill()
+                }
+                .frame(width: 200, height: 200)
+                .clipShape(.circle)
             }
         }
         .task {
@@ -26,8 +32,4 @@ struct ProfileView: View {
         }
         
     }
-}
-
-#Preview {
-    ProfileView(handle: "knotbin.xyz")
 }

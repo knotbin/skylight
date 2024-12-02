@@ -17,7 +17,9 @@ struct LoginView: View {
                 Section {
                     TextField("Handle", text: $viewModel.username)
                         .autocorrectionDisabled()
-                        .autocapitalization(.none)
+                        #if !os(macOS)
+                        .textInputAutocapitalization(.none)
+                        #endif
                     SecureField("App Password", text: $viewModel.password)
                 }
             }
@@ -32,9 +34,4 @@ struct LoginView: View {
         .padding()
 
     }
-}
-
-#Preview {
-    LoginView()
-        .environment(AppModel())
 }
