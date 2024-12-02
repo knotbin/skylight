@@ -14,15 +14,45 @@ struct ProfileView: View {
     @State var profile: AppBskyLexicon.Actor.ProfileViewDetailedDefinition?
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                Text(profile?.actorHandle ?? "None")
-                AsyncImage(url: profile?.avatarImageURL) { result in
-                    result.image?
-                        .resizable()
-                        .scaledToFill()
+            if let profile = profile {
+                VStack(alignment: .leading) {
+                    ZStack {
+                        AsyncImage(url: profile.bannerImageURL) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        } placeholder: {
+                            Color(.gray)
+                        }
+                        .frame(height: 200)
+                        .frame(maxWidth: 1000)
+                        .clipShape(.rect(cornerRadius: 10, style: .continuous))
+                        VStack(alignment: .leading) {
+                            AsyncImage(url: profile.avatarImageURL) { result in
+                                result.image?
+                                    .resizable()
+                                    .scaledToFill()
+                            }
+                            .frame(width: 100, height: 100)
+                            .clipShape(.circle)
+                            .overlay( /// apply a rounded border
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(.windowBackground, lineWidth: 5)
+                            )
+                            Text(profile.displayName ?? profile.actorHandle)
+                                .font(.title).bold()
+                            Text("@" + (profile.actorHandle))
+                            HStack {
+                                Text(String(profile.followerCount ?? 0) + " followers")
+                                Text(String(profile.followCount ?? 0) + " following")
+                            }.fontWeight(.medium)
+                        }
+                        .padding(.top, 280)
+                        .padding(10)
+                        .frame(maxWidth: 1000, alignment: .leading)
+                    }
                 }
-                .frame(width: 200, height: 200)
-                .clipShape(.circle)
+                    .padding()
             }
         }
         .task {

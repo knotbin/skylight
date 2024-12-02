@@ -18,7 +18,7 @@ struct LoginView: View {
                     TextField("Handle", text: $viewModel.username)
                         .autocorrectionDisabled()
                         #if !os(macOS)
-                        .textInputAutocapitalization(.none)
+                        .textInputAutocapitalization(.never)
                         #endif
                     SecureField("App Password", text: $viewModel.password)
                 }
