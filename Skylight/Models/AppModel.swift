@@ -13,15 +13,23 @@ import SwiftUI
 class AppModel {
     @ObservationIgnored @AppStorage("handle") var handle: String = ""
     @ObservationIgnored @AppStorage("apppassword") var apppassword: String = ""
+    var initialized = false
     var atProto = ATProtoKit()
     
     init() {
         if !handle.isEmpty && !apppassword.isEmpty {
             let config = ATProtocolConfiguration(handle: handle, appPassword: apppassword)
             Task {
-                let session = try await config.authenticate()
-                atProto = ATProtoKit(session: session)
+                do {
+                    let session = try await config.authenticate()
+                    atProto = ATProtoKit(session: session)
+                    initialized = true
+                } catch {
+                    initialized = true
+                }
             }
+        } else {
+            initialized = true
         }
     }
 }

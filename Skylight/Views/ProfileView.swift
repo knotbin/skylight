@@ -16,7 +16,7 @@ struct ProfileView: View {
         ScrollView {
             if let profile = profile {
                 VStack(alignment: .leading) {
-                    ZStack {
+                    ZStack(alignment: .top) {
                         AsyncImage(url: profile.bannerImageURL) { image in
                             image
                                 .resizable()
@@ -47,7 +47,7 @@ struct ProfileView: View {
                                 Text(String(profile.followCount ?? 0) + " following")
                             }.fontWeight(.medium)
                         }
-                        .padding(.top, 280)
+                        .padding(.top, 150)
                         .padding(10)
                         .frame(maxWidth: 1000, alignment: .leading)
                     }
